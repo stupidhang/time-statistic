@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"net/http"
 	"os"
@@ -19,6 +20,11 @@ type DurationVO struct {
 	Duration int    `json:"duration"`
 }
 
+const (
+	port    = 8001 // server port
+	logFile = "log/log.log"
+)
+
 func main() {
 	// 1.get mysql conn
 	db, err := getDBConn()
@@ -33,17 +39,26 @@ func main() {
 		panic(err)
 	}
 	// 3.start server
+	fmt.Printf("server listening at %v\n", port)
 	http.HandleFunc("/add_duration", addDuration(db))
-	http.ListenAndServe(":8001", nil)
+	http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 }
 
 func getDBConn() (*sql.DB, error) {
+	username := os.Getenv("MYSQL_USERNAME")
+	password := os.Getenv("MYSQL_PASSWORD")
+	host := os.Getenv("MYSQL_HOST")
+	hostPort := os.Getenv("MYSQL_HOST_PORT")
+	if username == "" || password == "" || host == "" || hostPort == "" {
+		panic("must set MYSQL_USERNAME, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_HOST_PORT in env")
+	}
+
 	return sql.Open("mysql",
-		"username:password@tcp(49.232.70.87:3306)/time-statistic")
+		fmt.Sprintf("%s:%s@tcp(%s:%s)/time-statistic", username, password, host, hostPort))
 }
 
 func setLog() error {
-	file, err := os.OpenFile("log/log.log", os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
+	file, err := os.OpenFile(logFile, os.O_CREATE|os.O_APPEND|os.O_RDWR, os.ModePerm)
 	if err != nil {
 		return errors.WithStack(err)
 	}
