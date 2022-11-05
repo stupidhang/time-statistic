@@ -1,6 +1,0 @@
-time="2022-11-04T11:59:54+08:00" level=info msg="&{0x140000bcaa0 0x1400018c100 0x14000070040 0x100846ce0 true false false false 0 {0 0} 0x140000700c0 {0x14000206000 map[] false false} map[] false 12 -1 200 false false [] 0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] [0 0 0] 0x1400006e070 0}"
-time="2022-11-04T11:59:59+08:00" level=info msg="&{0x140000bcaa0 0x14000212000 0x14000070100 0x100846ce0 true false false false 0 {0 0} 0x14000070180 {0x140002060e0 map[] false false} map[] false 15 -1 400 false false [] 0 [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0] [0 0 0 0 0 0 0 0 0 0] [0 0 0] 0x1400006e0e0 0}"
-time="2022-11-04T12:01:29+08:00" level=info msg="[230 147 141 228 189 156 230 136 144 229 138 159]"
-time="2022-11-04T12:01:35+08:00" level=info msg="[229 143 130 230 149 176 228 184 141 229 144 136 230 179 149]"
-time="2022-11-04T12:02:31+08:00" level=info msg="操作成功"
-time="2022-11-04T12:02:35+08:00" level=error msg="json: cannot unmarshal number into Go struct field DurationVO.date of type string"
